@@ -9,11 +9,7 @@
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 </type-mapping>
-<table-filter match-catalog="photosharing" match-name="amigos"/>
-  <table-filter match-catalog="photosharing" match-name="comentarios"/>
-  <table-filter match-catalog="photosharing" match-name="fotos"/>
-  <table-filter match-catalog="photosharing" match-name="likes"/>
-  <table-filter match-catalog="photosharing" match-name="tags"/>
-  <table-filter match-catalog="photosharing" match-name="usuario"/>
+
 </hibernate-reverse-engineering>

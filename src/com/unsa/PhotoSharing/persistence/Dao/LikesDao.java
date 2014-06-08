@@ -2,12 +2,12 @@ package com.unsa.PhotoSharing.persistence.Dao;
 
 import java.util.List;
 
-import com.unsa.PhotoSharing.persistence.entity.Likes;
+import com.unsa.PhotoSharing.persistence.entity.Like;
 
 public interface LikesDao {
-	public void add(Likes likes);
-	public void edit(Likes likes);
+	public void add(Like likes);
+	public void edit(Like likes);
 	public void delete(int likesId);
-	public Likes getLikes(int likesId);
-	public List<Likes> getAllLikes();
+	public Like getLike(int likesId);
+	public List<Like> getAllLikes();
 }

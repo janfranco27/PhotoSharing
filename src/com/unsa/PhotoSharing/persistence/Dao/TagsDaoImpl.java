@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-
-import com.unsa.PhotoSharing.persistence.entity.Tags;
+import com.unsa.PhotoSharing.persistence.entity.Tag;
 
 public class TagsDaoImpl implements TagsDao {
 	private SessionFactory session;
 	@Override
-	public void add(Tags tags) {
+	public void add(Tag tags) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().save(tags);
 	}
 
 	@Override
-	public void edit(Tags tags) {
+	public void edit(Tag tags) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().update(tags);
 	}
@@ -24,7 +23,7 @@ public class TagsDaoImpl implements TagsDao {
 	@Override
 	public void delete(int tagsId) {
 		// TODO Auto-generated method stub
-		Tags tagsDell = (Tags)this.session.getCurrentSession().get(Tags.class,tagsId);
+		Tag tagsDell = (Tag)this.session.getCurrentSession().get(Tag.class,tagsId);
 		if(tagsDell != null)
 		{
 			this.session.getCurrentSession().delete(tagsDell);
@@ -32,16 +31,16 @@ public class TagsDaoImpl implements TagsDao {
 	}
 
 	@Override
-	public Tags getTags(int tagsId) {
+	public Tag getTag(int tagsId) {
 		// TODO Auto-generated method stub
-		return (Tags)this.session.getCurrentSession().get(Tags.class,tagsId);
+		return (Tag)this.session.getCurrentSession().get(Tag.class,tagsId);
 	}
 
 	@Override
-	public List<Tags> getAllTags() {
+	public List<Tag> getAllTags() {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
-		List<Tags> listTags = (List<Tags>)this.session.getCurrentSession().createQuery("from Tags").list();
+		List<Tag> listTags = (List<Tag>)this.session.getCurrentSession().createQuery("from Tag").list();
 		return listTags;
 	}
 

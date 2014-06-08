@@ -2,16 +2,28 @@ package com.unsa.PhotoSharing.persistence.Dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import com.unsa.PhotoSharing.persistence.entity.Usuario;
 
 public class UsuarioDaoImpl implements UsuarioDao {
 	private SessionFactory session;
+	
+	public UsuarioDaoImpl ()
+	{
+		session = SessionFactoryUtil.getInstance();
+	}
+	
 	@Override
 	public void add(Usuario usuario) {
 		// TODO Auto-generated method stub
-		this.session.getCurrentSession().save(usuario);
+		Session s = session.getCurrentSession();
+		System.out.println("añadir");
+		Transaction trans=s.beginTransaction();
+		s.save(usuario);
+		trans.commit();
 	}
 
 	@Override

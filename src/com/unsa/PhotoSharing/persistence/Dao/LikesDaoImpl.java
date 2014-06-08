@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-
-import com.unsa.PhotoSharing.persistence.entity.Likes;
+import com.unsa.PhotoSharing.persistence.entity.Like;
 
 public class LikesDaoImpl implements LikesDao {
 	private SessionFactory session;
 	@Override
-	public void add(Likes likes) {
+	public void add(Like likes) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().save(likes);
 	}
 
 	@Override
-	public void edit(Likes likes) {
+	public void edit(Like likes) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().update(likes);
 	}
@@ -24,7 +23,7 @@ public class LikesDaoImpl implements LikesDao {
 	@Override
 	public void delete(int likesId) {
 		// TODO Auto-generated method stub
-		Likes likesDell = (Likes)this.session.getCurrentSession().get(Likes.class,likesId);
+		Like likesDell = (Like)this.session.getCurrentSession().get(Like.class,likesId);
 		if(likesDell != null)
 		{
 			this.session.getCurrentSession().delete(likesDell);
@@ -32,17 +31,17 @@ public class LikesDaoImpl implements LikesDao {
 	}
 
 	@Override
-	public Likes getLikes(int likesId) {
+	public Like getLike(int likesId) {
 		// TODO Auto-generated method stub
-		return (Likes)this.session.getCurrentSession().get(Likes.class,likesId);
+		return (Like)this.session.getCurrentSession().get(Like.class,likesId);
 
 	}
 
 	@Override
-	public List<Likes> getAllLikes() {
+	public List<Like> getAllLikes() {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
-		List<Likes> listLikes = (List<Likes>)this.session.getCurrentSession().createQuery("from Likes").list();
+		List<Like> listLikes = (List<Like>)this.session.getCurrentSession().createQuery("from Like").list();
 		return listLikes;
 	}
 

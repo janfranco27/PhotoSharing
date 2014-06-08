@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-
-import com.unsa.PhotoSharing.persistence.entity.Fotos;
+import com.unsa.PhotoSharing.persistence.entity.Foto;
 
 public class FotosDaoImpl implements FotosDao {
 	private SessionFactory session;
 	@Override
-	public void add(Fotos fotos) {
+	public void add(Foto fotos) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().save(fotos);
 	}
 
 	@Override
-	public void edit(Fotos fotos) {
+	public void edit(Foto fotos) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().update(fotos);
 	}
@@ -24,7 +23,7 @@ public class FotosDaoImpl implements FotosDao {
 	@Override
 	public void delete(int fotosId) {
 		// TODO Auto-generated method stub
-		Fotos fotosDell = (Fotos)this.session.getCurrentSession().get(Fotos.class,fotosId);
+		Foto fotosDell = (Foto)this.session.getCurrentSession().get(Foto.class,fotosId);
 		if(fotosDell != null)
 		{
 			this.session.getCurrentSession().delete(fotosDell);
@@ -32,17 +31,17 @@ public class FotosDaoImpl implements FotosDao {
 	}
 
 	@Override
-	public Fotos getFotos(int fotosId) {
+	public Foto getFoto(int fotosId) {
 		// TODO Auto-generated method stub
-		return (Fotos)this.session.getCurrentSession().get(Fotos.class,fotosId);
+		return (Foto)this.session.getCurrentSession().get(Foto.class,fotosId);
 
 	}
 
 	@Override
-	public List<Fotos> getAllFotos() {
+	public List<Foto> getAllFotos() {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
-		List<Fotos> listFotos = (List<Fotos>)this.session.getCurrentSession().createQuery("from Fotos").list();
+		List<Foto> listFotos = (List<Foto>)this.session.getCurrentSession().createQuery("from Foto").list();
 		return listFotos;
 	}
 

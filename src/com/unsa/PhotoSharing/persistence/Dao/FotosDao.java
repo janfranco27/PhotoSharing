@@ -2,12 +2,12 @@ package com.unsa.PhotoSharing.persistence.Dao;
 
 import java.util.List;
 
-import com.unsa.PhotoSharing.persistence.entity.Fotos;
+import com.unsa.PhotoSharing.persistence.entity.Foto;
 
 public interface FotosDao {
-	public void add(Fotos fotos);
-	public void edit(Fotos fotos);
-	public void delete(int fotosId);
-	public Fotos getFotos(int fotosId);
-	public List<Fotos> getAllFotos();
+	public void add(Foto foto);
+	public void edit(Foto foto);
+	public void delete(int fotoId);
+	public Foto getFoto(int fotoId);
+	public List<Foto> getAllFotos();
 }

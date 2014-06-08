@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
-import com.unsa.PhotoSharing.persistence.entity.Comentarios;
+import com.unsa.PhotoSharing.persistence.entity.Comentario;
 
 public class ComentarioDaoImpl implements ComentariosDao {
 	private SessionFactory session;
 	@Override
-	public void add(Comentarios comentario) {
+	public void add(Comentario comentario) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().save(comentario);
 	}
 
 	@Override
-	public void edit(Comentarios comentario) {
+	public void edit(Comentario comentario) {
 		// TODO Auto-generated method stub
 		this.session.getCurrentSession().update(comentario);
 	}
@@ -23,7 +23,7 @@ public class ComentarioDaoImpl implements ComentariosDao {
 	@Override
 	public void delete(int comentarioId) {
 		// TODO Auto-generated method stub
-		Comentarios comentarioDell = (Comentarios)this.session.getCurrentSession().get(Comentarios.class,comentarioId);
+		Comentario comentarioDell = (Comentario)this.session.getCurrentSession().get(Comentario.class,comentarioId);
 		if(comentarioDell != null)
 		{
 			this.session.getCurrentSession().delete(comentarioDell);
@@ -32,18 +32,18 @@ public class ComentarioDaoImpl implements ComentariosDao {
 
 	
 	@Override
-	public Comentarios getComentarios(int comentarioId) {
+	public Comentario getComentario(int comentarioId) {
 		// TODO Auto-generated method stub
-		return (Comentarios)this.session.getCurrentSession().get(Comentarios.class,comentarioId);
+		return (Comentario)this.session.getCurrentSession().get(Comentario.class,comentarioId);
 
 	}
 
 	@Override
-	public List<Comentarios> getAllComentarios() {
+	public List<Comentario> getAllComentarios() {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
-		List<Comentarios> listComentarios = (List<Comentarios>)this.session.getCurrentSession().createQuery("from Comentarios").list();
-		return listComentarios;
+		List<Comentario> listComentario = (List<Comentario>)this.session.getCurrentSession().createQuery("from Comentario").list();
+		return listComentario;
 
 	}
 
