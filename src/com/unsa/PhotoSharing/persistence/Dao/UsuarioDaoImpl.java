@@ -1,7 +1,9 @@
 package com.unsa.PhotoSharing.persistence.Dao;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -54,6 +56,32 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		@SuppressWarnings("unchecked")
 		List<Usuario> listUsuario = (List<Usuario>)this.session.getCurrentSession().createQuery("from Usuario").list();
 		return listUsuario;
+	}
+
+	@Override
+	public Usuario loginUsuario(String nickname, String password) {
+		// TODO Auto-generated method stub
+		
+		Usuario u = null;
+		Session s = session.getCurrentSession();
+		System.out.println("añadir");
+		Transaction trans=s.beginTransaction();
+		Query query= s.createQuery("FROM Usuario U WHERE U.nickname = :nickname and U.password = :password");
+		query.setParameter("nickname", nickname);
+		query.setParameter("password", password);
+		
+		List user = query.list();
+		Iterator listIterator = user.iterator();
+        while(listIterator.hasNext())
+        {
+            Usuario rd = (Usuario) listIterator.next();
+            System.out.println("UserId :" +rd.getNombre());
+            System.out.println("Mail Id :" +rd.getEmail());
+            u = rd;
+        }
+		
+		trans.commit();
+		return u;
 	}
 
 }

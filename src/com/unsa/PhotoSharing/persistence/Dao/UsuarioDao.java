@@ -10,4 +10,5 @@ public interface UsuarioDao {
 	public void delete(int usuarioId);
 	public Usuario getUsuario(int usuarioId);
 	public List<Usuario> getAllUsuario();
+	public Usuario loginUsuario (String nickname, String password);
 }
