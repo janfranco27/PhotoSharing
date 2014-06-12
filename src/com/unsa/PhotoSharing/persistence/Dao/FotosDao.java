@@ -10,4 +10,5 @@ public interface FotosDao {
 	public void delete(int fotoId);
 	public Foto getFoto(int fotoId);
 	public List<Foto> getAllFotos();
+	public int getLastInsertedId();
 }

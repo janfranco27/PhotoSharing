@@ -1,17 +1,31 @@
 package com.unsa.PhotoSharing.persistence.Dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import com.unsa.PhotoSharing.persistence.entity.Foto;
 
 public class FotosDaoImpl implements FotosDao {
 	private SessionFactory session;
+	
+	public FotosDaoImpl()
+	{
+		session = SessionFactoryUtil.getInstance();
+	}
+	
 	@Override
 	public void add(Foto fotos) {
 		// TODO Auto-generated method stub
-		this.session.getCurrentSession().save(fotos);
+		Session s = session.getCurrentSession();
+		System.out.println("añadir foto");
+		Transaction trans=s.beginTransaction();
+		s.save(fotos);
+		trans.commit();
 	}
 
 	@Override
@@ -45,4 +59,16 @@ public class FotosDaoImpl implements FotosDao {
 		return listFotos;
 	}
 
+	@Override
+	public int getLastInsertedId()
+	{
+		Session s = session.getCurrentSession();
+		System.out.println("last id");
+		Transaction trans=s.beginTransaction();
+		Query query= s.createSQLQuery("SELECT COUNT(idFoto) AS id FROM foto").addScalar("id");
+		List<BigInteger> result = query.list();
+		int lastInserted = result.get(0).intValue();
+		trans.commit();
+		return lastInserted;
+	}
 }

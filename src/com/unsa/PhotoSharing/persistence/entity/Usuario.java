@@ -130,7 +130,7 @@ public class Usuario implements java.io.Serializable {
 		this.profilePhoto = profilePhoto;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;
 	}
@@ -168,7 +168,7 @@ public class Usuario implements java.io.Serializable {
 		this.likes = likes;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	public Set<Foto> getFotos() {
 		return this.fotos;
 	}

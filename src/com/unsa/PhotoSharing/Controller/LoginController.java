@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.unsa.PhotoSharing.Business.LoginManager;
 import com.unsa.PhotoSharing.Business.NewUserManager;
+import com.unsa.PhotoSharing.persistence.entity.Usuario;
 
 /**
  * Servlet implementation class LoginController
@@ -49,7 +51,9 @@ public class LoginController extends HttpServlet {
 		if (manager.login (nickname, password))
 		{
 			manager.sessionInit(request, response);
-			
+			HttpSession c = request.getSession();
+			Usuario u = (Usuario)c.getAttribute("user");
+			System.out.println ("Mi nombre es " + u.getNombre());
         }else
         {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");

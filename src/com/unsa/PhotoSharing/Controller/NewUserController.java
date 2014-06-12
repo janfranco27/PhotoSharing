@@ -1,6 +1,7 @@
 package com.unsa.PhotoSharing.Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +46,14 @@ public class NewUserController extends HttpServlet {
 		
 		NewUserManager manager = new NewUserManager();
 		manager.insert(nombre, apellidos, email, nickname, password);
+		
+		PrintWriter out = response.getWriter();
+		out.println("<!-------------------------------------------------------------------->"+
+	    "<!-- TITULO                                                         -->"+
+	    "<!-------------------------------------------------------------------->"+
+				"<h1><br/>" + "Inserción correcta!" + "<br/>&nbsp;</h1>");
+    	
+    	out.println("<h4><br/><font size=\"+1\" <a href=\"index.html\" onClick=\"history.go(-1); return false;\">VOLVER</a><br/>&nbsp;</h4><br/>"); 
 	}
 
 }

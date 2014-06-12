@@ -35,15 +35,16 @@ public class LoginManager
         userName.setMaxAge(30*60);
         response.addCookie(userName);
         try {
-			response.sendRedirect("LoginSuccess.jsp");
+			response.sendRedirect("home.jsp?user_id=" + user.getIdUsuario());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public void sessionClose(){
-		
+	public void sessionClose(HttpServletRequest request)
+	{
+		request.getSession().invalidate();
 		
 	}
 	
