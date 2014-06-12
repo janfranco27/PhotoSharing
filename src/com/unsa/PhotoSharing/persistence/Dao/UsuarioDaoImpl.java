@@ -1,13 +1,18 @@
 package com.unsa.PhotoSharing.persistence.Dao;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.unsa.PhotoSharing.persistence.entity.Comentario;
+import com.unsa.PhotoSharing.persistence.entity.Foto;
 import com.unsa.PhotoSharing.persistence.entity.Usuario;
 
 public class UsuarioDaoImpl implements UsuarioDao {
@@ -31,7 +36,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void edit(Usuario usuario) {
 		// TODO Auto-generated method stub
-		this.session.getCurrentSession().update(usuario);
+		Session s = session.getCurrentSession();
+		System.out.println("añadir");
+		Transaction trans=s.beginTransaction();
+		s.update(usuario);
+		trans.commit();
+
 	}
 
 	@Override
@@ -47,7 +57,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public Usuario getUsuario(int usuarioId) {
 		// TODO Auto-generated method stub
-		return (Usuario)this.session.getCurrentSession().get(Usuario.class,usuarioId);
+		
+		Session s = session.getCurrentSession();
+		System.out.println("getUser");
+		Transaction trans=s.beginTransaction();
+		Usuario u = (Usuario)s.get(Usuario.class,usuarioId);
+		trans.commit();
+		
+		return u;
 	}
 
 	@Override
@@ -82,6 +99,50 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		
 		trans.commit();
 		return u;
+	}
+
+	@Override
+	public List<Foto> getUsuarioFotos(Usuario usuario) 
+	{
+		Session s = session.openSession();
+		List<Foto> result = new ArrayList<Foto>();
+		Set <Foto> setResult;
+		
+		setResult = usuario.getFotos();
+		Transaction t = s.beginTransaction();
+		t.commit();
+		for (Foto f : setResult)
+		{
+			result.add(f);
+		}
+		
+	    s.close();
+		System.out.println(result);
+
+		return result;
+	}
+
+	@Override
+	public List<String> getLastNews(Usuario usuario) 
+	{
+		
+		Session s = session.openSession();
+		List<String> result = new ArrayList<String>();
+		Set <Comentario> setResult;
+		
+		setResult = usuario.getComentarios();
+		Transaction t = s.beginTransaction();
+		t.commit();
+		for (Comentario c : setResult)
+		{
+			String tmp = "Comentaste \"" + c.getComentario() + "\" el " + (new SimpleDateFormat("yyyy-MM-dd").format(c.getComentDate()));
+			result.add(tmp);
+		}
+		
+	    s.close();
+		System.out.println(result);
+
+		return result;
 	}
 
 }
