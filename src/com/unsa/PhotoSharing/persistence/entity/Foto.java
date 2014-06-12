@@ -103,7 +103,7 @@ public class Foto implements java.io.Serializable {
 		this.descripcion = descripcion;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "foto")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "foto")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;
 	}

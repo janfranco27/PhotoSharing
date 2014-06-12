@@ -66,7 +66,7 @@ public class Comentario implements java.io.Serializable {
 		this.foto = foto;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idUsuario", nullable = false)
 	public Usuario getUsuario() {
 		return this.usuario;

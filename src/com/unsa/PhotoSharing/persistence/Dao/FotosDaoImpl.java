@@ -1,13 +1,16 @@
 package com.unsa.PhotoSharing.persistence.Dao;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.unsa.PhotoSharing.persistence.entity.Comentario;
 import com.unsa.PhotoSharing.persistence.entity.Foto;
 
 public class FotosDaoImpl implements FotosDao {
@@ -70,5 +73,25 @@ public class FotosDaoImpl implements FotosDao {
 		int lastInserted = result.get(0).intValue();
 		trans.commit();
 		return lastInserted;
+	}
+
+	@Override
+	public List<Comentario> getFotoComentario(Foto foto) {
+		Session s = session.getCurrentSession();
+		List<Comentario> result = new ArrayList<Comentario>();
+		Set <Comentario> setResult;
+		
+		setResult = foto.getComentarios();
+		Transaction t = s.beginTransaction();
+		t.commit();
+		for (Comentario c : setResult)
+		{
+			result.add(c);
+		}
+		
+	    s.close();
+		System.out.println(result);
+
+		return result;
 	}
 }
