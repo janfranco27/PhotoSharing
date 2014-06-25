@@ -70,8 +70,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public List<Usuario> getAllUsuario() {
 		// TODO Auto-generated method stub
-		@SuppressWarnings("unchecked")
-		List<Usuario> listUsuario = (List<Usuario>)this.session.getCurrentSession().createQuery("from Usuario").list();
+		Session s = session.getCurrentSession();
+		Transaction trans=s.beginTransaction();
+
+		List<Usuario> listUsuario = (List<Usuario>)s.createQuery("from Usuario").list();
+		trans.commit();
+
 		return listUsuario;
 	}
 
@@ -144,5 +148,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 		return result;
 	}
+	
 
 }

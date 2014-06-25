@@ -3,7 +3,7 @@
 <%@ page import="com.unsa.PhotoSharing.persistence.entity.*" %>
 <html>
 	<head>
-		<title>Ajustes de cuenta</title>
+		<title>Subir foto</title>
 		
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600|Source+Code+Pro" rel="stylesheet" />
@@ -37,7 +37,7 @@
 		<script>
 			// DOM ready
 			$(function() {
-    
+
 			// Create the dropdown base
 			$("<select />").appendTo("nav");
    
@@ -62,16 +62,94 @@
 			$("nav select").change(function() {
 				window.location = $(this).find("option:selected").val();
 			});
-  
-			});
+
+
+
+            function search()
+            {
+
+                var title=$("#search").val();
+
+                if(title!="")
+                {
+                  $("#result").html("<img src='images/ajax-loader.gif'/>");
+                   $.ajax({
+                      type:"post",
+                      url:"getdatasearch.jsp",
+                      data:"title="+title,
+                      success:function(data){
+                          $("#result").html(data);
+                       }
+                    });
+                }
+                
+	           }
+
+            $("#button").click(function(){
+            	 search();
+            });
+
+            $('#search').keyup(function(e) {     
+                  search();
+
+            });
+       });
+		    
 		</script>	
 		
+		
+		
+		<!-- script para la busqueda con jQuery y ajax -->
+                
+		
+		<style type="text/css">
+            #container{
+               width:800px;
+               margin:0 auto;
+            }
+
+            #search{
+               width:700px;
+               padding:10px;
+            }
+
+            #button{
+               display: block;
+               width: 100px;
+               height:30px;
+               border:solid #366FEB 1px;
+               background: #91B2FA;
+            }
+
+            #result ul{
+            	margin-left:-40px;
+            }
+
+            ul li{
+            	border-bottom: dotted 1px black;
+              	height: 20px;
+            }
+
+            #result li:hover{
+            	background: #a3caf6;
+            }
+
+            #result li a{
+	           margin: 0px;
+	           display: block;
+	           width: 100%;
+	           height: 100%;
+               text-decoration: none;
+               font-size: 18px;
+            }
+  	    </style> 
+  	    
 	</head>
 	<body>
 	
 	<%
 	Usuario user = (Usuario)request.getSession().getAttribute("user");
-	System.out.println(user.getEmail() + "---->>>>");
+	System.out.println(user.getProfilePhoto() + "---->>>>");
 	boolean showPage = true;
 	boolean showMessage = false;
 	int user_id = 0;
@@ -86,8 +164,8 @@
 	<% if (!showPage) 
 		{
 		%>
-			No se puede mostrar la página! 
-			<a href="index.jsp">Inicia sesión o registra un nuevo usuario</a><br>
+		No se puede mostrar la página! 
+		<a href="index.jsp">Inicia sesión o registra un nuevo usuario</a><br>
 		<% 
 		} 
 		else 
@@ -137,41 +215,14 @@
 				<div id="sidebar">	
 				
 				
-													
-					<section class="8u">				
-						<%
-							try
-							{
-								String uploadStatus = (String)request.getAttribute("done");
-								if (uploadStatus == "YES")
-								{
-									showMessage = true;
-									out.println("<h2> Imagen subida satisfactoriamente! </h2>");
-								}
-								else if(uploadStatus == "NO")
-								{
-									showMessage = false;
-									out.println("<h2> Error al intentar subir el archivo! </h2>");
-								}
-							}
-							catch (Exception e)
-							{
-									
-							}
-						%>
-						<form method="post" action="SettingsController" enctype="multipart/form-data">
-						<input type="hidden" name="user_id" value="<%=user_id %>">
-						
-						Selecciona una nueva imagen de perfil:
-						<input type="file" name="dataFile" id="fileChooser"  accept="image/*"/><br/><br/>
-						
-						<input type="submit" value="Upload" />
-						</form>
-								
-					</section>
-					
-					
-
+					<div id="container">
+				     <input type="text" id="search" placeholder="Search Users or Photo Tags..."/>
+				     <input type="button" id="button" value="Search" />
+				     <ul id="result">
+				     
+				     </ul>
+					</div>
+			
 				</div>
 			</div>
         </div>		

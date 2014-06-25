@@ -11,32 +11,53 @@
 <title>Login PhotoSharing</title>
  <link rel="stylesheet" href="css/login.css">
  
- <script type="text/javascript">
+ <script src="js/jquery-2.1.1.min.js"></script> 
+      <script src="js/jquery.validate.min.js"></script>
+      <script> $(document).ready(function () {
+		 
+		 $("#login").validate({
+			 rules: {
+		         nickname: { required: true },
+         		password: { required: true }
+			 },
+		         messages: {
+		        	nickname: "Nickname es requerido",
+					password: "Password es requerida",
+		         }
+		     });
 
-function checkform1 ( )
-{
-	var x = document.forms["Login"]["nickname"].value;
-	var y = document.forms["Login"]["password"].value;
 
-	if (x == null || x =="" || y == null || y == "") {
-    alert( "Debes llenar los campos para logearte" );
-    return false ;
-  }
-  else return true;
+		 $("#register").validate({
+			 rules: {
+		        nickname: { required: true, minlength:5 },
+         		password: { required: true, minlength:5 },
+         		nombre:{ required: true },
+             	apellidos:{ required: true },
+                email:{ required: true, email:true }
+			 },
+		         messages: {
+		        	nickname: "Nickname es requerido (5+ caracteres)",
+					password: "Password es requerida (5+ caracteres)",
+					nombre: "Ingresa tu nombre",
+	             	apellidos: "Ingresa tus apellidos",
+	                email: "Ingresa un email valido"
+		         }
+		     });
+	     
+	 });
+	 </script>
+	 
+	 
+<style type="text/css">
+.login input.error {
+border:1px solid red;
 }
 
-function checkform2 ( form )
-{
-  if (form.nickname.value == "" || form.password.value == "" || form.nombre.value == "" || form.apellidos.value == "" || form.email.value == "") {
-    alert( "Debes llenar todos los campos para registrarte" );
-    form.email.focus();
-    return false ;
-  }
-  else return true;
-
+.register input.error {
+border:1px solid red;
 }
 
-</script>
+</style>
 
 </head>
 
@@ -56,9 +77,9 @@ function checkform2 ( form )
 	<section class="container">
 	  	<div class="login">
 	        <h1>Log-in en PhotoSharing</h1>
-			<form name="Login" action="LoginController" method="post" onsubmit="return checkform1();">
-	       		<p><input type="text" name="nickname" value="" placeholder="Username"></p>
-	        	<p><input type="password" name="password" value="" placeholder="Password"></p>
+			<form name="Login" id="login" action="LoginController" method="post" onsubmit="return checkform1();">
+	       		<p><input type="text" id="nickname" name="nickname" value=""  placeholder="Username"></p>
+	        	<p><input type="password" id="password" name="password" value=""  placeholder="Password"></p>
 		        <p class="submit"><input type="submit" id="submit" value="Log in"></p>
 	      </form>
 	   </div>
@@ -66,14 +87,14 @@ function checkform2 ( form )
 
 	<section class="container">
 		<div class="login">
-			<h1>Nuevo usuario? RegÃ­strate!</h1>
-			<form name="NewUser" action="NewUserController" method="post" onsubmit="return checkform2(this);">
+			<h1>Nuevo usuario? Registrate!</h1>
+			<form name="NewUser" id="register" action="NewUserController" method="post" onsubmit="return checkform2(this)zz">
 		
-				<p> <input type="text" name="nombre" placeholder="Nombres"/> </p>
-				<p> <input type="text" name="apellidos" placeholder="Apellidos" /> </p>
-				<p> <input type="text" name="email" placeholder="Email"/> </p>
-				<p> <input type="text" name="nickname" placeholder="Nickname" /> </p>
-				<p> <input type="password" name="password" placeholder="Password" /> </p>
+				<p> <input type="text" name="nombre" id="nombre" placeholder="Nombres"/> </p>
+				<p> <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" /> </p>
+				<p> <input type="text" name="email" id="email" placeholder="Email"/> </p>
+				<p> <input type="text" name="nickname" id="nickname" placeholder="Nickname" /> </p>
+				<p> <input type="password" name="password" id="password" placeholder="Password" /> </p>
 				<p class="submit"> <input type="submit" value="Registrar" /> </p>
 	
 			</form>

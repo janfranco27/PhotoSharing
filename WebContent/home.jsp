@@ -156,7 +156,7 @@
 							<li><a class="active" href="home.jsp?user_id=<%=logedUser.getIdUsuario()%>">Home</a></li>
 							<li><a href="upload.jsp">Subir foto</a></li>
 							<li>
-								<a href="#">Buscar</a>
+								<a href="search.jsp">Buscar</a>
 							</li>
 							<li><a href="settings.jsp">Ajustes de perfil</a></li>
 							<li><a href="LogoutController">Log Out</a></li>

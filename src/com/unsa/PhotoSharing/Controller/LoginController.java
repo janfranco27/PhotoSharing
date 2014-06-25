@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
         {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
             PrintWriter out= response.getWriter();
-            out.println("<font color=red>Nombre de usuario o contraseña inválidos.</font>");
+            out.println("<font color=red>Nombre de usuario o contrasenha invalidos.</font>");
             rd.include(request, response);
         }
 	}
