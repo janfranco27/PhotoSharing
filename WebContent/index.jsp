@@ -3,6 +3,8 @@
 <%@ page import="com.unsa.PhotoSharing.persistence.entity.*" %>
 <%@ page import="com.unsa.PhotoSharing.Business.*" %>
 <%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 
 <html>
 <head>
@@ -62,6 +64,17 @@ border:1px solid red;
 </head>
 
 <body>
+<f:view>
+	<h:panelGrid columns="2"> 
+		Language : 
+		<h:selectOneMenu value="#{languageBean.localeCode}" onchange="submit()"
+			valueChangeListener="#{languageBean.countryLocaleCodeChanged}">
+   			<f:selectItems value="#{languageBean.countries}" /> 
+   		</h:selectOneMenu>
+ 
+	</h:panelGrid>
+
+
 
 <%
 	Usuario logedUser = (Usuario)request.getSession().getAttribute("user");
@@ -76,32 +89,54 @@ border:1px solid red;
 %>
 	<section class="container">
 	  	<div class="login">
-	        <h1>Log-in en PhotoSharing</h1>
-			<form name="Login" id="login" action="LoginController" method="post" onsubmit="return checkform1();">
-	       		<p><input type="text" id="nickname" name="nickname" value=""  placeholder="Username"></p>
-	        	<p><input type="password" id="password" name="password" value=""  placeholder="Password"></p>
-		        <p class="submit"><input type="submit" id="submit" value="Log in"></p>
-	      </form>
+	        <h1>Log-in en PhotoSharing</h1>	        
+	        
+	        <h:messages></h:messages>
+	        <h:form>
+	        <h:panelGrid border="1" columns="2">
+			<h:outputText value="#{msg.nickname}" />
+			<h:inputText value="#{loginBeanController.nickname}" />
+			<h:outputText value="#{msg.password}" />
+			<h:inputSecret value="#{loginBeanController.password}">
+			<f:validator validatorId="com.unsa.PhotoSharing.Controller.validatePassword" />
+			</h:inputSecret>
+		
+			</h:panelGrid>
+		<h:commandButton value="Login" action="#{loginBeanController.login}" ></h:commandButton>
+	</h:form>
+	
+	        
+	        
+
 	   </div>
 	</section>
 
 	<section class="container">
 		<div class="login">
 			<h1>Nuevo usuario? Registrate!</h1>
-			<form name="NewUser" id="register" action="NewUserController" method="post" onsubmit="return checkform2(this)zz">
 		
-				<p> <input type="text" name="nombre" id="nombre" placeholder="Nombres"/> </p>
-				<p> <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" /> </p>
-				<p> <input type="text" name="email" id="email" placeholder="Email"/> </p>
-				<p> <input type="text" name="nickname" id="nickname" placeholder="Nickname" /> </p>
-				<p> <input type="password" name="password" id="password" placeholder="Password" /> </p>
-				<p class="submit"> <input type="submit" value="Registrar" /> </p>
-	
-			</form>
+			<h:form>
+			
+			 <h:panelGrid border="1" columns="2">
+				<h:outputText value="#{msg.nombre}" />
+				<h:inputText value="#{newUserBeanController.nombre}" />
+				<h:outputText value="#{msg.apellido}" />
+				<h:inputText value="#{newUserBeanController.apellidos}" />
+				<h:outputText value="#{msg.email}" />
+				<h:inputText value="#{newUserBeanController.email}" />
+				<h:outputText value="#{msg.nickname}" />
+				<h:inputText value="#{newUserBeanController.nickname}" />
+				<h:outputText value="#{msg.password}" />
+				<h:inputSecret  value="#{newUserBeanController.password}" />	
+			</h:panelGrid>
+			<h:commandButton value="Registrar" action="#{newUserBeanController.registrar}"></h:commandButton>
+			</h:form>
+		
 		</div>
 	</section>
 <%
 	}
 %>
+	</f:view>
 </body>
 </html>
