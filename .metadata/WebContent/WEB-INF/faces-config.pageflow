@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14043565436100" configfile="/PhotoSharing/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index" x="408" y="180" id="pf14043744066770" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14043744066771 pf14043744066772 pf14043744066773 pf14043744066774" path="/index.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="home" x="108" y="84" id="pf14043744066785" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14043744066771" path="/home.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="registroSuccess" x="47" y="264" id="pf14043744066786" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14043744066772" path="/registroSuccess.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginFallo" x="307" y="288" id="pf14043744066787" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14043744066773" path="/loginFallo.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="registroFailed" x="288" y="48" id="pf14043744066788" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf14043744066774" path="/registroFailed.jsp"/>
+  <links id="pf14043744066771" target="pf14043744066785" source="pf14043744066770" outcome="login"/>
+  <links id="pf14043744066772" target="pf14043744066786" source="pf14043744066770" outcome="registro"/>
+  <links id="pf14043744066773" target="pf14043744066787" source="pf14043744066770" outcome="errorlogin"/>
+  <links id="pf14043744066774" target="pf14043744066788" source="pf14043744066770" outcome="registrofailed"/>
+</pageflow:Pageflow>
