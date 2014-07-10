@@ -3,8 +3,6 @@
 <%@ page import="com.unsa.PhotoSharing.persistence.entity.*" %>
 <%@ page import="com.unsa.PhotoSharing.Business.*" %>
 <%@ page import="java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>
-<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 
 <html>
 <head>

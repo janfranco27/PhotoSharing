@@ -165,7 +165,7 @@
 		{
 		%>
 		No se puede mostrar la página! 
-		<a href="index.jsp">Inicia sesión o registra un nuevo usuario</a><br>
+		<a href="login.jsp">Inicia sesión o registra un nuevo usuario</a><br>
 		<% 
 		} 
 		else 

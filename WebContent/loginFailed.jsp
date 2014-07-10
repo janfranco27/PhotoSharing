@@ -12,7 +12,7 @@
   <section class="container">
     <div class="login">
       <h1>Error en Log In</h1>
-	<form id="registered" action="index.jsp">
+	<form id="registered" action="login.jsp">
         <p>El usuario no existe. Intenta ingresar nuevamente</p>
         <p class="submit"><input type="submit" id="submit" value="Ir a inicio"></p>
       </form>

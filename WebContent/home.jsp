@@ -115,8 +115,8 @@
 			if (logedUser == null)
 			{
 				%>
-				Debes estar logeado para ver el contenido! 
-				<a href="index.jsp">Inicia sesión o registra un nuevo usuario</a><br>
+				Debes estar logeado para ver el contenido!!! 
+				<a href="login.jsp">Inicia sesión o registra un nuevo usuario</a><br>
 				<% 
 			}
 			else

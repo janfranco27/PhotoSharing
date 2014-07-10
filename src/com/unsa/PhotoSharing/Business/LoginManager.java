@@ -20,6 +20,7 @@ public class LoginManager
 	
 	public boolean login (String nickname, String password)
 	{
+		System.out.println("ssss");
 		userDao = new UsuarioDaoImpl();
 		user = userDao.loginUsuario(nickname, password);
 		if(user != null) return true;
@@ -48,6 +49,10 @@ public class LoginManager
 		
 	}
 	
+	public Usuario getUser()
+	{
+		return user;
+	}
 	public void register(){
 		
 	}
