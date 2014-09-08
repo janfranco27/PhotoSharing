@@ -1,7 +1,9 @@
+<%@page import="com.unsa.PhotoSharing.Recommendation.UserRecommendation"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.unsa.PhotoSharing.Controller.*" %>
 <%@ page import="com.unsa.PhotoSharing.persistence.entity.*" %>
 <%@ page import="com.unsa.PhotoSharing.Business.*" %>
+<%@ page import="com.unsa.PhotoSharing.Recommendation.*" %>
 <%@ page import="java.util.*" %>
 
 <html>
@@ -265,6 +267,50 @@
 								</ul>
 								
 							</section>
+							
+							
+							<section class="12u">
+								<h3>Usuarios recomendados</h3>
+								
+								<%
+									UserRecommendation userRecommendation = new UserRecommendation(user.getIdUsuario());
+									List<Integer> ids = userRecommendation.getRecommended();
+								%>
+								<ul>
+								
+								<%
+								
+								for (Integer i : ids)
+								{
+									Usuario u = userManager.getUsuario(i);
+
+								%>
+									<li>
+									<figure>
+										<img src="<%=u.getProfilePhoto()%>" width="50" height="40" alt="<%= u.getIdUsuario()%>"/>
+										<figcaption><%=u.getNombre() + " " + u.getApellidos() %></figcaption>
+									</figure>
+									<%
+									
+									String visit = "<a href=home.jsp?user_id=" + u.getIdUsuario() + 
+													 " style=\"color: rgb(0,0,255); font-weight: bold;font-size:small\">" + 
+														"Visitar perfil de " + u.getNickname() + "</a><br>";
+									out.println(visit);
+									
+									%>
+									</li>
+								
+							<%
+								}
+							%>
+
+
+									
+								</ul>
+								
+							</section>
+							
+							
 						</div>
 					</section>			
 													
